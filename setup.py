@@ -35,7 +35,7 @@ REQUIRES = [
     ]
 
 setup(name='marv-robotics',
-      version='2.0.0b2',
+      version='2.0.0b3.dev',
       description='Data management platform for robot logs',
       long_description=README + '\n\n' + CHANGES,
       classifiers=[
