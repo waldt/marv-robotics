@@ -20,11 +20,10 @@ MarkupSafe==0.23          # via jinja2
 matplotlib==1.5.3
 mimerender==0.6.0
 numpy==1.11.2             # via matplotlib
-pillow==3.4.1
+pillow==3.4.2
 pycparser==2.14
 pyparsing==2.1.10         # via matplotlib
 python-dateutil==2.5.3
-python-mimeparse==1.5.5
 python-mimeparse==1.5.5
 pytz==2016.7              # via matplotlib
 Six==1.10.0               # via bcrypt, cycler, flask-cors, python-dateutil
