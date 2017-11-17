@@ -2,7 +2,7 @@
 #
 # This file is part of MARV Robotics
 #
-# Copyright 2016 Ternaris
+# Copyright 2016-2017 Ternaris
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -21,10 +21,10 @@ from __future__ import absolute_import, division, print_function
 import os
 from importlib import import_module
 
-from marv_robotics import nodes
+import marv_robotics
 
 
-for mod in (x for x in os.listdir(os.path.dirname(nodes.__file__))
+for mod in (x for x in os.listdir(os.path.dirname(marv_robotics.__file__))
             if x.endswith('.py')):
     mod = '.' + mod[:-3]
-    import_module(mod, 'marv_robotics.nodes')
+    import_module(mod, 'marv_robotics')

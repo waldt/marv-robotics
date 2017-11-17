@@ -2,7 +2,7 @@
 #
 # This file is part of MARV Robotics
 #
-# Copyright 2016 Ternaris
+# Copyright 2016-2017 Ternaris
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -25,19 +25,15 @@ from collections import defaultdict
 from mock import patch
 
 import marv
-from marv import Site, create_app
-from marv._model import Fileset, Fileinfo, db
 from marv.testing import make_scanroot, temporary_directory
-
-from marv_robotics import bagset
 
 
 KEEP = os.getenv('KEEP')
 
 
-def repr_mock(info, realrepr=Fileinfo.__repr__):
-    """mock function for Fileinfo.__repr__"""
-    return re.sub(r'mtime=\d+.\d+,', "mtime='MTIME'", realrepr(info))
+# def repr_mock(info, realrepr=Fileinfo.__repr__):
+#     """mock function for Fileinfo.__repr__"""
+#     return re.sub(r'mtime=\d+.\d+,', "mtime='MTIME'", realrepr(info))
 
 
 @unittest.skip
@@ -58,7 +54,7 @@ class TestCase(unittest.TestCase):
             db.create_all()
 
             self.site.config['collection'] = {'scanroot': self.scanroot,
-                                          'fileset': self.fqtn}
+                                          'dataset': self.fqtn}
             self.site.write_config()
             self.site.load_config()
 
@@ -88,8 +84,8 @@ class TestCase(unittest.TestCase):
                                       'set0_0000-11-00-00-00-00_1.bag',
                                       'set0_0000-11-00-00-00-00_2.bag'])
         ctx = self.site.scan()
-        filesets = [x.fileset for x in ctx.agg_added.values()]
-        self.assertEqual(sorted([x.files[-1].relpath for x in filesets]), [
+        datasets = [x.dataset for x in ctx.agg_added.values()]
+        self.assertEqual(sorted([x.files[-1].relpath for x in datasets]), [
             'set0_0000-00-00-00-00-00_2.bag',
             'set0_0000-11-00-00-00-00_2.bag',
         ])
@@ -107,8 +103,8 @@ class TestCase(unittest.TestCase):
                                       'set2_0000-00-00-00-00-00_1.bag',
                                       'set2_0000-00-00-00-00-00_2.bag'])
         ctx = self.site.scan()
-        filesets = [x.fileset for x in ctx.agg_added.values()]
-        self.assertEqual(sorted([x.files[-1].relpath for x in filesets]), [
+        datasets = [x.dataset for x in ctx.agg_added.values()]
+        self.assertEqual(sorted([x.files[-1].relpath for x in datasets]), [
             'set0_0000-00-00-00-00-00_0.bag',
             'set2.bag',
         ])
@@ -118,8 +114,8 @@ class TestCase(unittest.TestCase):
                                       'set1_0000-00-00-00-00-00_0.bag',
                                       'set2_0000-00-00-00-00-00_0.bag'])
         ctx = self.site.scan()
-        filesets = Fileset.query.all()
-        self.assertEqual(sorted([x.files[-1].relpath for x in filesets]), [
+        datasets = Dataset.query.all()
+        self.assertEqual(sorted([x.files[-1].relpath for x in datasets]), [
             'set0_0000-00-00-00-00-00_0.bag',
             'set1_0000-00-00-00-00-00_2.bag',
             'set2.bag',

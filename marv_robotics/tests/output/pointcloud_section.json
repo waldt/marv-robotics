@@ -1,0 +1,71 @@
+[
+  {
+    "title": "Point Clouds", 
+    "widgets": [
+      {
+        "_which": "pointcloud", 
+        "pointcloud": {
+          "pointsize": 1.0, 
+          "size": 128320, 
+          "speed": {
+            "default": 1.0, 
+            "max": 1000.0, 
+            "min": 1.0
+          }, 
+          "transform": [
+            1.0, 
+            0.0, 
+            0.0, 
+            0.0, 
+            0.0, 
+            1.0, 
+            0.0, 
+            0.0, 
+            0.0, 
+            0.0, 
+            1.0, 
+            0.0, 
+            0.0, 
+            0.0, 
+            0.0, 
+            1.0
+          ], 
+          "uri": "marv-stream:pointcloud_streams-1/GA======/zeno:lidar:scan"
+        }, 
+        "title": "/zeno/lidar/scan"
+      }, 
+      {
+        "_which": "pointcloud", 
+        "pointcloud": {
+          "pointsize": 1.0, 
+          "size": 37936, 
+          "speed": {
+            "default": 1.0, 
+            "max": 1000.0, 
+            "min": 1.0
+          }, 
+          "transform": [
+            1.0, 
+            0.0, 
+            0.0, 
+            0.0, 
+            0.0, 
+            1.0, 
+            0.0, 
+            0.0, 
+            0.0, 
+            0.0, 
+            1.0, 
+            0.0, 
+            0.0, 
+            0.0, 
+            0.0, 
+            1.0
+          ], 
+          "uri": "marv-stream:pointcloud_streams-1/GE======/slam_node:slam2d:map"
+        }, 
+        "title": "/slam_node/slam2d/map"
+      }
+    ]
+  }
+]

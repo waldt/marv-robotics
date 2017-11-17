@@ -1,0 +1,10 @@
+*.egg-info
+*.py[co]
+*.sw[op]
+.*.sw[op]
+*~
+.*~
+/.coverage
+/cover
+/dist
+/venv

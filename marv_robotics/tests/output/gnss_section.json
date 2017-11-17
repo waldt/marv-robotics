@@ -1,0 +1,12 @@
+[
+  {
+    "title": "Position and Orientation", 
+    "widgets": [
+      {
+        "_which": "mpld3", 
+        "mpld3": "marv-partial:gnss_plots-1/gps:fix__one.json", 
+        "title": "/gps/fix with none"
+      }
+    ]
+  }
+]

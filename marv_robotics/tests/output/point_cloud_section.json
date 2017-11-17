@@ -1,0 +1,38 @@
+[
+  {
+    "_type": "marv_detail.types_capnp:Section", 
+    "title": "Point Clouds", 
+    "widgets": [
+      {
+        "_type": "marv_detail.types_capnp:Widget", 
+        "_which": "three", 
+        "three": {
+          "_type": "marv_detail.types_capnp:Three", 
+          "size": 1176712, 
+          "uri": {
+            "_type": "marv_nodes.types_capnp:File", 
+            "mtime": 1490625345942041600, 
+            "name": "zeno:lidar:scan", 
+            "size": 1176712
+          }
+        }, 
+        "title": "/zeno/lidar/scan"
+      }, 
+      {
+        "_type": "marv_detail.types_capnp:Widget", 
+        "_which": "three", 
+        "three": {
+          "_type": "marv_detail.types_capnp:Three", 
+          "size": 1086472, 
+          "uri": {
+            "_type": "marv_nodes.types_capnp:File", 
+            "mtime": 1490625345948041984, 
+            "name": "slam_node:slam2d:map", 
+            "size": 1086472
+          }
+        }, 
+        "title": "/slam_node/slam2d/map"
+      }
+    ]
+  }
+]

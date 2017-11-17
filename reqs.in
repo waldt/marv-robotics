@@ -1,4 +1,0 @@
--r ../marv/reqs.txt
-matplotlib
-pillow
-utm

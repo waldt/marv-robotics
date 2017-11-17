@@ -1,0 +1,89 @@
+[
+  {
+    "title": "Topics", 
+    "widgets": [
+      {
+        "_which": "table", 
+        "table": {
+          "actions": [], 
+          "columns": [
+            {
+              "align": "left", 
+              "formatter": "string", 
+              "list": false, 
+              "title": "Topic"
+            }, 
+            {
+              "align": "left", 
+              "formatter": "string", 
+              "list": false, 
+              "title": "Message type"
+            }, 
+            {
+              "align": "right", 
+              "formatter": "string", 
+              "list": false, 
+              "title": "Message count"
+            }
+          ], 
+          "rows": [
+            {
+              "cells": [
+                {
+                  "_which": "text", 
+                  "text": "/chatter"
+                }, 
+                {
+                  "_which": "text", 
+                  "text": "std_msgs/String"
+                }, 
+                {
+                  "_which": "uint64", 
+                  "uint64": 29
+                }
+              ], 
+              "id": 0
+            }, 
+            {
+              "cells": [
+                {
+                  "_which": "text", 
+                  "text": "/rosout"
+                }, 
+                {
+                  "_which": "text", 
+                  "text": "rosgraph_msgs/Log"
+                }, 
+                {
+                  "_which": "uint64", 
+                  "uint64": 34
+                }
+              ], 
+              "id": 1
+            }, 
+            {
+              "cells": [
+                {
+                  "_which": "text", 
+                  "text": "/rosout_agg"
+                }, 
+                {
+                  "_which": "text", 
+                  "text": "rosgraph_msgs/Log"
+                }, 
+                {
+                  "_which": "uint64", 
+                  "uint64": 31
+                }
+              ], 
+              "id": 2
+            }
+          ], 
+          "sortcolumn": 0, 
+          "sortorder": "ascending"
+        }, 
+        "title": ""
+      }
+    ]
+  }
+]

@@ -1,0 +1,120 @@
+[
+  {
+    "bags": [
+      {
+        "duration": 963920384, 
+        "endTime": 1423137548218460672, 
+        "msgCount": 29, 
+        "msgTypes": [
+          {
+            "md5sum": "992ce8a1687cec8c8bd883ec73ca41d1", 
+            "msgDef": "string data", 
+            "name": "std_msgs/String"
+          }, 
+          {
+            "md5sum": "acffd30cd6b6de30f120938c17c593fb", 
+            "msgDef": "##\n## Severity level constants\n##\nbyte DEBUG=1 #debug level\nbyte INFO=2  #general level\nbyte WARN=4  #warning level\nbyte ERROR=8 #error level\nbyte FATAL=16 #fatal/critical level\n##\n## Fields\n##\nHeader header\nbyte level\nstring name # name of the node\nstring msg # message \nstring file # file the message came from\nstring function # function the message came from\nuint32 line # line the message came from\nstring[] topics # topic names that the node publishes\n\n================================================================================\nMSG: std_msgs/Header\n# Standard metadata for higher-level stamped data types.\n# This is generally used to communicate timestamped data \n# in a particular coordinate frame.\n# \n# sequence ID: consecutively increasing ID \nuint32 seq\n#Two-integer timestamp that is expressed as:\n# * stamp.secs: seconds (stamp_secs) since epoch\n# * stamp.nsecs: nanoseconds since stamp_secs\n# time-handling sugar is provided by the client library\ntime stamp\n#Frame this data is associated with\n# 0: no frame\n# 1: global frame\nstring frame_id", 
+            "name": "rosgraph_msgs/Log"
+          }
+        ], 
+        "startTime": 1423137547254540288, 
+        "topics": [
+          {
+            "latching": false, 
+            "msgCount": 29, 
+            "msgType": "std_msgs/String", 
+            "name": "/chatter"
+          }, 
+          {
+            "latching": true, 
+            "msgCount": 34, 
+            "msgType": "rosgraph_msgs/Log", 
+            "name": "/rosout"
+          }, 
+          {
+            "latching": false, 
+            "msgCount": 31, 
+            "msgType": "rosgraph_msgs/Log", 
+            "name": "/rosout_agg"
+          }
+        ], 
+        "version": 200
+      }, 
+      {
+        "duration": 1959523840, 
+        "endTime": 1423137550224936960, 
+        "msgCount": 65, 
+        "msgTypes": [
+          {
+            "md5sum": "992ce8a1687cec8c8bd883ec73ca41d1", 
+            "msgDef": "string data", 
+            "name": "std_msgs/String"
+          }, 
+          {
+            "md5sum": "acffd30cd6b6de30f120938c17c593fb", 
+            "msgDef": "##\n## Severity level constants\n##\nbyte DEBUG=1 #debug level\nbyte INFO=2  #general level\nbyte WARN=4  #warning level\nbyte ERROR=8 #error level\nbyte FATAL=16 #fatal/critical level\n##\n## Fields\n##\nHeader header\nbyte level\nstring name # name of the node\nstring msg # message \nstring file # file the message came from\nstring function # function the message came from\nuint32 line # line the message came from\nstring[] topics # topic names that the node publishes\n\n================================================================================\nMSG: std_msgs/Header\n# Standard metadata for higher-level stamped data types.\n# This is generally used to communicate timestamped data \n# in a particular coordinate frame.\n# \n# sequence ID: consecutively increasing ID \nuint32 seq\n#Two-integer timestamp that is expressed as:\n# * stamp.secs: seconds (stamp_secs) since epoch\n# * stamp.nsecs: nanoseconds since stamp_secs\n# time-handling sugar is provided by the client library\ntime stamp\n#Frame this data is associated with\n# 0: no frame\n# 1: global frame\nstring frame_id", 
+            "name": "rosgraph_msgs/Log"
+          }
+        ], 
+        "startTime": 1423137548265413120, 
+        "topics": [
+          {
+            "latching": false, 
+            "msgCount": 21, 
+            "msgType": "std_msgs/String", 
+            "name": "/chatter"
+          }, 
+          {
+            "latching": true, 
+            "msgCount": 2, 
+            "msgType": "rosgraph_msgs/Log", 
+            "name": "/rosout"
+          }, 
+          {
+            "latching": false, 
+            "msgCount": 22, 
+            "msgType": "rosgraph_msgs/Log", 
+            "name": "/rosout_agg"
+          }
+        ], 
+        "version": 200
+      }
+    ], 
+    "duration": 2970396672, 
+    "endTime": 1423137550224936960, 
+    "msgCount": 94, 
+    "msgTypes": [
+      {
+        "md5sum": "992ce8a1687cec8c8bd883ec73ca41d1", 
+        "msgDef": "string data", 
+        "name": "std_msgs/String"
+      }, 
+      {
+        "md5sum": "acffd30cd6b6de30f120938c17c593fb", 
+        "msgDef": "##\n## Severity level constants\n##\nbyte DEBUG=1 #debug level\nbyte INFO=2  #general level\nbyte WARN=4  #warning level\nbyte ERROR=8 #error level\nbyte FATAL=16 #fatal/critical level\n##\n## Fields\n##\nHeader header\nbyte level\nstring name # name of the node\nstring msg # message \nstring file # file the message came from\nstring function # function the message came from\nuint32 line # line the message came from\nstring[] topics # topic names that the node publishes\n\n================================================================================\nMSG: std_msgs/Header\n# Standard metadata for higher-level stamped data types.\n# This is generally used to communicate timestamped data \n# in a particular coordinate frame.\n# \n# sequence ID: consecutively increasing ID \nuint32 seq\n#Two-integer timestamp that is expressed as:\n# * stamp.secs: seconds (stamp_secs) since epoch\n# * stamp.nsecs: nanoseconds since stamp_secs\n# time-handling sugar is provided by the client library\ntime stamp\n#Frame this data is associated with\n# 0: no frame\n# 1: global frame\nstring frame_id", 
+        "name": "rosgraph_msgs/Log"
+      }
+    ], 
+    "startTime": 1423137547254540288, 
+    "topics": [
+      {
+        "latching": false, 
+        "msgCount": 29, 
+        "msgType": "std_msgs/String", 
+        "name": "/chatter"
+      }, 
+      {
+        "latching": true, 
+        "msgCount": 34, 
+        "msgType": "rosgraph_msgs/Log", 
+        "name": "/rosout"
+      }, 
+      {
+        "latching": false, 
+        "msgCount": 31, 
+        "msgType": "rosgraph_msgs/Log", 
+        "name": "/rosout_agg"
+      }
+    ]
+  }
+]

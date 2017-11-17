@@ -2,7 +2,7 @@
 #
 # This file is part of MARV Robotics
 #
-# Copyright 2016 Ternaris
+# Copyright 2016-2017 Ternaris
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -24,23 +24,13 @@ from setuptools import setup
 HERE = os.path.abspath(os.path.dirname(__file__))
 with open(os.path.join(HERE, 'README.rst')) as f:
     README = f.read()
-with open(os.path.join(HERE, 'CHANGES.rst')) as f:
-    CHANGES = f.read()
-
-REQUIRES = [
-    'marv',
-    'matplotlib',
-    'pillow',
-    'utm',
-    ]
 
 setup(name='marv-robotics',
-      version='2.0.0b3.dev',
+      version='3.0.0',
       description='Data management platform for robot logs',
-      long_description=README + '\n\n' + CHANGES,
+      long_description=README,
       classifiers=[
-          'Development Status :: 4 - Beta',
-          #'Development Status :: 5 - Production/Stable',
+          'Development Status :: 5 - Production/Stable',
           'License :: OSI Approved :: Apache Software License',
           'Operating System :: POSIX :: Linux',  # for now
           'Programming Language :: Python',
@@ -54,10 +44,12 @@ setup(name='marv-robotics',
       url='https://ternaris.com/marv-robotics',
       license='Apache License 2.0',
       keywords=[],
-      packages=['marv_robotics', 'marv_robotics.tests', 'marv_robotics.nodes'],
+      packages=['marv_robotics', 'marv_robotics.tests'],
       include_package_data=True,
       zip_safe=False,
       test_suite='nose.collector',
       tests_require=['nose'],
-      install_requires=REQUIRES,
-      entry_points={'marv_profiles': ['robotics = marv_robotics:marv_profile']})
+      install_requires=['marv',
+                        'matplotlib',
+                        'pillow',
+                        'utm'])
