@@ -26,11 +26,10 @@ import utm
 from matplotlib import cm
 from matplotlib import dates as md
 from matplotlib import pyplot as plt
-from roslib.message import get_message_class
 
 import marv
 from marv_nodes.types_capnp import File
-from .bag import messages
+from .bag import get_message_type, messages
 
 
 def yaw_angle(frame):
@@ -57,10 +56,10 @@ def yaw_angle(frame):
 
 
 @marv.node()
-@marv.input('stream', foreach=messages['*:sensor_msgs/NavSatFix'])
+@marv.input('stream', foreach=marv.select(messages, '*:sensor_msgs/NavSatFix'))
 def positions(stream):
     yield marv.set_header(title=stream.topic)
-    pytype = get_message_class(stream.msg_type)
+    pytype = get_message_type(stream)
     rosmsg = pytype()
     erroneous = 0
     e_offset = None
@@ -103,10 +102,10 @@ def positions(stream):
 
 
 @marv.node()
-@marv.input('stream', foreach=messages['*:sensor_msgs/Imu'])
+@marv.input('stream', foreach=marv.select(messages, '*:sensor_msgs/Imu'))
 def imus(stream):
     yield marv.set_header(title=stream.topic)
-    pytype = get_message_class(stream.msg_type)
+    pytype = get_message_type(stream)
     rosmsg = pytype()
     erroneous = 0
     imus = []
@@ -128,14 +127,11 @@ def imus(stream):
 
 
 @marv.node()
-@marv.input('stream', foreach=messages['*:nmea_navsat_driver/NavSatOrientation'])
+@marv.input('stream', foreach=marv.select(messages, '*:nmea_navsat_driver/NavSatOrientation'))
 def navsatorients(stream):
     log = yield marv.get_logger()
     yield marv.set_header(title=stream.topic)
-    pytype = get_message_class(stream.msg_type)
-    if pytype is None:
-        log.error('Message definition for %r not available', stream.msg_type)
-        raise marv.Abort()
+    pytype = get_message_type(stream)
     rosmsg = pytype()
     erroneous = 0
     navsatorients = []

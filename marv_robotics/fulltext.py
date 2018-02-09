@@ -18,19 +18,17 @@
 
 from __future__ import absolute_import, division, print_function
 
-from roslib.message import get_message_class
-
 import marv
 from marv_nodes.types_capnp import Words
-from .bag import messages
+from .bag import get_message_type, messages
 
 
 @marv.node(Words)
-@marv.input('stream', foreach=messages['*:std_msgs/String'])
+@marv.input('stream', foreach=marv.select(messages, '*:std_msgs/String'))
 def fulltext_per_topic(stream):
     yield marv.set_header()  # TODO: workaround
     words = set()
-    pytype = get_message_class(stream.msg_type)
+    pytype = get_message_type(stream)
     rosmsg = pytype()
     while True:
         msg = yield marv.pull(stream)

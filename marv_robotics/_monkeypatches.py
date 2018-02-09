@@ -18,7 +18,7 @@ def get_start_time(self):
     """
     if self._chunks:
         return min(x.start_time.to_sec() for x in self._chunks)
-    return _get_end_time(self)
+    return _get_start_time(self)
 
 
 def get_end_time(self):
@@ -29,7 +29,7 @@ def get_end_time(self):
     """
     if self._chunks:
         return max(x.end_time.to_sec() for x in self._chunks)
-    return _get_start_time(self)
+    return _get_end_time(self)
 
 
 rosbag.Bag.get_start_time = get_start_time

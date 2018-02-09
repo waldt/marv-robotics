@@ -19,18 +19,17 @@
 from __future__ import absolute_import, division, print_function
 
 import numpy as np
-from roslib.message import get_message_class
 
 import marv
 from marv_nodes.types_capnp import File, GeoJson
-from .bag import messages
+from .bag import get_message_type, messages
 
 
 @marv.node()
-@marv.input('stream', foreach=messages['*:sensor_msgs/NavSatFix'])
+@marv.input('stream', foreach=marv.select(messages, '*:sensor_msgs/NavSatFix'))
 def navsatfix(stream):
     yield marv.set_header(title=stream.topic)
-    pytype = get_message_class(stream.msg_type)
+    pytype = get_message_type(stream)
     rosmsg = pytype()
     erroneous = 0
     while True:

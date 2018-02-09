@@ -26,16 +26,15 @@ import cv_bridge
 import cv2
 import marv
 import numpy
-from roslib.message import get_message_class
 
 from marv_nodes.types_capnp import File
-from .bag import messages
+from .bag import get_message_type, messages
 
 imgmsg_to_cv2 = cv_bridge.CvBridge().imgmsg_to_cv2
 
 
 @marv.node(File)
-@marv.input('stream', foreach=messages['*:sensor_msgs/Image'])
+@marv.input('stream', foreach=marv.select(messages, '*:sensor_msgs/Image'))
 @marv.input('speed', default=4)
 @marv.input('convert_32FC1_scale', default=1)
 @marv.input('convert_32FC1_offset', default=0)
@@ -47,7 +46,7 @@ def ffmpeg(stream, speed, convert_32FC1_scale, convert_32FC1_offset):
     duration = (stream.end_time - stream.start_time) * 1e-9
     framerate = stream.msg_count / duration
 
-    pytype = get_message_class(stream.msg_type)
+    pytype = get_message_type(stream)
     rosmsg = pytype()
 
     encoder = None
@@ -60,7 +59,9 @@ def ffmpeg(stream, speed, convert_32FC1_scale, convert_32FC1_offset):
             ffargs = [
                 'ffmpeg',
                 '-f', 'rawvideo',
-                '-pixel_format', '%s' % {'mono8': 'gray', '32FC1': 'gray', '8UC1': 'gray'}.get(rosmsg.encoding, 'rgb24'),
+                '-pixel_format', '%s' % {'mono8': 'gray',
+                                         '32FC1': 'gray',
+                                         '8UC1': 'gray'}.get(rosmsg.encoding, 'rgb24'),
                 '-video_size', '%dx%d' % (rosmsg.width, rosmsg.height),
                 '-framerate', '%s' % framerate,
                 '-i', '-',
@@ -91,7 +92,7 @@ def ffmpeg(stream, speed, convert_32FC1_scale, convert_32FC1_offset):
 
 
 @marv.node(File)
-@marv.input('stream', foreach=messages['*:sensor_msgs/Image'])
+@marv.input('stream', foreach=marv.select(messages, '*:sensor_msgs/Image'))
 @marv.input('image_width', default=320)
 @marv.input('max_frames', default=50)
 @marv.input('convert_32FC1_scale', default=1)
@@ -106,7 +107,7 @@ def images(stream, image_width, max_frames, convert_32FC1_scale, convert_32FC1_o
         max_frames (int): Maximum number of frames to extract.
     """
     yield marv.set_header(title=stream.topic)
-    pytype = get_message_class(stream.msg_type)
+    pytype = get_message_type(stream)
     rosmsg = pytype()
     interval = int(math.ceil(stream.msg_count / max_frames))
     digits = int(math.ceil(math.log(stream.msg_count) / math.log(10)))

@@ -146,23 +146,37 @@ def images_section(galleries, title):
 
 
 @marv.node(Section)
-@marv.input('title', default='Topics')
+@marv.input('title', default='Connections')
 @marv.input('bagmeta', default=bagmeta)
 @marv.input('dataset', default=marv_nodes.dataset)
-def topics_section(bagmeta, dataset, title):
-    """Section displaying information about dataset topics."""
+def connections_section(bagmeta, dataset, title):
+    """Section displaying information about ROS connections."""
     dataset, bagmeta = yield marv.pull_all(dataset, bagmeta)
+    if not bagmeta.topics:
+        raise marv.Abort()
     columns = [
         {'title': 'Topic'},
-        {'title': 'Message type'},
+        {'title': 'Type'},
+        {'title': 'MD5'},
+        {'title': 'Latching'},
         {'title': 'Message count', 'align': 'right'}
     ]
     rows = [{'id': idx, 'cells': [
-        {'text': topic.name},
-        {'text': topic.msg_type},
-        {'uint64': topic.msg_count}
-    ]} for idx, topic in enumerate(bagmeta.topics)]
+        {'text': con.topic},
+        {'text': con.datatype},
+        {'text': con.md5sum},
+        {'bool': con.latching},
+        {'uint64': con.msg_count}
+    ]} for idx, con in enumerate(bagmeta.connections)]
     widgets = [{'table': {'columns': columns, 'rows': rows}}]
+    # TODO: Add text widget explaining what can be seen here: ROS bag
+    # files store connections. There can be multiple connections for
+    # one topic with the same or different message types and message
+    # types with the same name might have different md5s. For
+    # simplicity connections with the same topic, message type and md5
+    # are treated as one, within one bag file as well as across bags
+    # of one set. If one of such connections is latching, the
+    # aggregated connection will be latching.
     yield marv.push({'title': title, 'widgets': widgets})
 
 

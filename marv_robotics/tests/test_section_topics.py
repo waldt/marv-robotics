@@ -23,7 +23,7 @@ from marv_node.testing import make_dataset, make_sink, run_nodes, temporary_dire
 from marv_store import Store
 from pkg_resources import resource_filename
 
-from marv_robotics.detail import topics_section as node
+from marv_robotics.detail import connections_section as node
 
 
 class TestCase(marv_node.testing.TestCase):

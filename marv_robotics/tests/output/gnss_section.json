@@ -4,8 +4,8 @@
     "widgets": [
       {
         "_which": "mpld3", 
-        "mpld3": "marv-partial:gnss_plots-1/gps:fix__one.json", 
-        "title": "/gps/fix with none"
+        "mpld3": "marv-partial:gnss_plots-1/gps:fix__gps:orientation.json", 
+        "title": "/gps/fix with /gps/orientation"
       }
     ]
   }

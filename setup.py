@@ -2,7 +2,7 @@
 #
 # This file is part of MARV Robotics
 #
-# Copyright 2016-2017 Ternaris
+# Copyright 2016-2018 Ternaris
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ with open(os.path.join(HERE, 'README.rst')) as f:
     README = f.read()
 
 setup(name='marv-robotics',
-      version='3.0.0',
+      version='3.1.0',
       description='Data management platform for robot logs',
       long_description=README,
       classifiers=[
