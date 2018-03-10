@@ -19,7 +19,7 @@
 from __future__ import absolute_import, division, print_function
 
 import marv
-from marv_nodes.types_capnp import Words
+from marv.types import Words
 from .bag import get_message_type, messages
 
 

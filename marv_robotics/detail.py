@@ -24,7 +24,7 @@ import os
 import marv
 import marv_nodes
 from marv_detail import make_map_dict
-from marv_detail.types_capnp import Section, Widget
+from marv.types import Section, Widget
 from .bag import bagmeta
 from .cam import ffmpeg, images
 from .gnss import gnss_plots
@@ -210,7 +210,7 @@ def trajectory_section(geojson, title, minzoom, maxzoom, tile_server_protocol):
               'zoom': {'min': 0, 'max': 18}},
          ]},
         {'title': 'Trajectory',
-         'color': (0, 255, 0, 255),
+         'color': (0., 1., 0., 1.),
          'geojson': geojson},
     ]
     dct = make_map_dict({

@@ -28,7 +28,7 @@ from matplotlib import dates as md
 from matplotlib import pyplot as plt
 
 import marv
-from marv_nodes.types_capnp import File
+from marv.types import File
 from .bag import get_message_type, messages
 
 
@@ -74,7 +74,8 @@ def positions(stream):
         if not hasattr(rosmsg, 'status') or \
            np.isnan(rosmsg.longitude) or \
            np.isnan(rosmsg.latitude) or \
-           np.isnan(rosmsg.altitude):
+           np.isnan(rosmsg.altitude) or \
+           np.isnan(rosmsg.position_covariance[0]):
             erroneous += 1
             continue
 
@@ -98,7 +99,8 @@ def positions(stream):
     if erroneous:
         log = yield marv.get_logger()
         log.warn('skipped %d erroneous messages', erroneous)
-    yield marv.push({'values': positions})
+    if positions:
+        yield marv.push({'values': positions})
 
 
 @marv.node()

@@ -27,7 +27,7 @@ import cv2
 import marv
 import numpy
 
-from marv_nodes.types_capnp import File
+from marv.types import File
 from .bag import get_message_type, messages
 
 imgmsg_to_cv2 = cv_bridge.CvBridge().imgmsg_to_cv2

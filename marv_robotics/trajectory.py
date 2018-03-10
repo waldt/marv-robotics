@@ -21,7 +21,7 @@ from __future__ import absolute_import, division, print_function
 import numpy as np
 
 import marv
-from marv_nodes.types_capnp import File, GeoJson
+from marv.types import File, GeoJson
 from .bag import get_message_type, messages
 
 
@@ -45,7 +45,9 @@ def navsatfix(stream):
             continue
         # TODO: namedtuple?
         out = {'status': rosmsg.status.status,
-               'lon': rosmsg.longitude, 'lat': rosmsg.latitude}
+               'lon': rosmsg.longitude,
+               'lat': rosmsg.latitude,
+               'timestamp': rosmsg.header.stamp.to_time()}
         yield marv.push(out)
     if erroneous:
         log = yield marv.get_logger()
@@ -61,10 +63,15 @@ def trajectory(navsatfixes):
     yield marv.set_header(title=navsatfix.title)
     features = []
     prev_quality = None
+    timestamps = []
     while True:
         msg = yield marv.pull(navsatfix)
         if msg is None:
             break
+
+        dt = msg['timestamp']
+        timestamps.append(int(dt * 1e9))
+
         # Whether to output an augmented fix is determined by both the fix
         # type and the last time differential corrections were received.  A
         # fix is valid when status >= STATUS_FIX.
@@ -78,12 +85,15 @@ def trajectory(navsatfixes):
         else:
             quality = 4
         if quality != prev_quality:
-            color = ((255,   0,   0, 255),  # rgba
-                     (255, 165,   0, 255),
-                     (  0,   0, 255, 255),
-                     (  0, 255,   0, 255))[quality]
+            color = ((1., 0.,   0., 1.),  # rgba
+                     (1., 0.65, 0., 1.),
+                     (0., 0.,   1., 1.),
+                     (0., 1.,   0., 1.))[quality]
             coords = []
-            feat = {'properties': {'color': color},
+            feat = {'properties': {'color': color,
+                                   'width': 4.,
+                                   'timestamps': timestamps,
+                                   'markervertices': [c * 30 for c in (0., 0., -1., .3, -1., -.3)]},
                     'geometry': {'line_string': {'coordinates': coords}}}
             features.append(feat)
             prev_quality = quality
